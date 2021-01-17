@@ -22,4 +22,24 @@ WHERE title = 'Outlaw Hanky';
 
 --A customer is late on their return, Can you get the phone number for the customer who lives at '259 Ipoh Drive'?
 SELECT phone FROM address
-WHERE address = '259 Ipoh Drive'
+WHERE address = '259 Ipoh Drive';
+
+--What are the customer ids of the first 10 customers who created a payment? 
+SELECT customer_id FROM payment
+WHERE amount != 0.00
+ORDER BY payment_date ASC
+LIMIT 10;
+
+--What are the titles of the 5 shortest (in lenght of runtime) movies?
+SELECT title, length FROM film
+ORDER BY length ASC
+LIMIT 5;
+
+--How many movies are there with 50 mins or less run time. 
+SELECT COUNT(length) from film
+WHERE length < 50;
+
+--
+SELECT * FROM payment
+WHERE amount BETWEEN 8 AND 9;
+
