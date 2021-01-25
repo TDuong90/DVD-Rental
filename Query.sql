@@ -69,4 +69,22 @@ WHERE rating = 'R' AND replacement_cost BETWEEN 5 and 15;
 
 --How many films have the word Truman somewhere in the title?
 SELECT COUNT(*)FROM film
-WHERE title ILIKE '%Truman%'
+WHERE title ILIKE '%Truman%';
+
+--How many payments did each staff member handle and who gets the bonus? 
+SELECT staff_id, COUNT(payment_id) AS total_transaction FROM payment
+GROUP BY staff_id
+ORDER BY total_transaction;
+
+--What is the average replacement cost per MPAA rating? 
+SELECT rating, ROUND(AVG(replacement_cost),2) AS AVG_replacement_cost FROM film
+GROUP BY rating
+ORDER BY avg_replacement_cost;
+
+--What are the customer ids of the top 5 customers by total spend?
+SELECT customer_id, SUM(amount) FROM payment
+GROUP BY customer_id
+ORDER BY SUM(amount) DESC
+LIMIT 5;
+
+
