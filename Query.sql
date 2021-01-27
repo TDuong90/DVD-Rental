@@ -87,4 +87,29 @@ GROUP BY customer_id
 ORDER BY SUM(amount) DESC
 LIMIT 5;
 
+--What customer IDs are eligible for platinum status?(40 or more transaction payments)
+SELECT customer_id, COUNT(payment_id) FROM payment
+GROUP BY customer_id
+HAVING COUNT(payment_id) >= 40;
 
+--What are the customer ID of customers who have spent more than $100 in payment transactions with our staff_id 2?
+SELECT customer_id, staff_id, SUM(amount) FROM payment
+WHERE staff_id = 2
+GROUP BY staff_id, customer_id
+HAVING SUM(amount) >100;
+
+--What's the customer IDS of customer who have spent at least $110 with the staff member ID 2 ?
+SELECT customer_id, staff_id, SUM(amount) FROM payment
+WHERE staff_id = 2 
+GROUP BY customer_id, staff_id
+HAVING SUM(amount) >110;
+
+--How many films begin with the letter J?
+SELECT COUNT(*) FROM film
+WHERE title ILIKE 'J%';
+
+--What customer has the highest customer ID number whose name starts with an 'E' and has an address ID lower than 500?
+SELECT * FROM customer
+WHERE first_name ILIKE 'E%' AND address_id <500
+ORDER BY customer_id DESC
+LIMIT 1;
