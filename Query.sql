@@ -113,3 +113,17 @@ SELECT * FROM customer
 WHERE first_name ILIKE 'E%' AND address_id <500
 ORDER BY customer_id DESC
 LIMIT 1;
+
+--What are the emails of the customers who live in California?
+SELECT email, district FROM customer
+INNER JOIN address
+ON customer.address_id = address.address_id
+WHERE district = 'California';
+
+--Get a list of all the movies with the actor 'Nick Wahlberg' has been in. 
+SELECT film.title, actor.first_name, actor.last_name FROM film
+INNER JOIN film_actor
+ON film.film_id = film_actor.film_id
+INNER JOIN actor
+ON film_actor.actor_id = actor.actor_id
+WHERE actor.first_name = 'Nick' AND actor.last_name = 'Wahlberg';
